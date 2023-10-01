@@ -55,7 +55,11 @@ app.use(
 
 const mainrender = render();
 
-app.get("/login", );
+//app.get("/login", );
+app.get("/", (req, res) => {
+  
+  res.render("login");
+});
 
 app.get("/signup", );
 
