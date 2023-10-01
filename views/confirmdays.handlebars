@@ -1,0 +1,10 @@
+ <div class="container">
+        <h2>Selected Days</h2>
+        <ul id="selected-days">
+            <!-- Selected days will be displayed here dynamically -->
+            {{#each selectedDays}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+        <button id="confirm-button">Confirm</button>
+    </div>
