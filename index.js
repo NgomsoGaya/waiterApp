@@ -1,5 +1,4 @@
 //importing several dependencies essential for various aspects of the application.
-
 import express from "express";
 import flash from "express-flash";
 import session from "express-session";
@@ -55,17 +54,15 @@ app.use(
 
 const mainrender = render();
 
-//app.get("/login", );
-app.get("/", (req, res) => {
-  
-  res.render("login");
-});
+app.get("/", mainrender.login);
 
-app.get("/signup", );
+app.get("/signup", mainrender.signUp);
 
-app.post("/choosedays", );
+app.get("/choosedays", );
 
 app.post("/confirmdays", );
+
+app.get("/availablewaiters", );
 
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {
