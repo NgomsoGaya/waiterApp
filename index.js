@@ -54,15 +54,19 @@ app.use(
 
 const mainrender = render();
 
-app.get("/", mainrender.login);
-
 app.get("/signup", mainrender.signUp);
+app.post("/signup", mainrender.signUp);
 
-app.get("/choosedays", );
+app.get("/", mainrender.login);
+app.post("/login", mainrender.enter);
 
-app.post("/confirmdays", );
+app.get("/choosedays/:username", mainrender.chooseDays);
+app.post("/choosedays/:username", mainrender.chosenDays);
 
-app.get("/availablewaiters", );
+app.get("/confirmdays/:username", mainrender.confirmDays);
+app.post("/confirmdays/:username", );
+
+//app.get("/availablewaiters", );
 
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {

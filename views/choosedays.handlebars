@@ -1,26 +1,26 @@
  <div class="container">
         <h2>Choose Your Working Days</h2>
-        <form action="/choosedays" method="POST">
+        <form action="/choosedays/{{username}}" method="POST">
             <label>
-                <input type="checkbox" name="days[]" value="Monday"> Monday
+                <input type="checkbox" name="days" value="Monday"> Monday
             </label>
             <label>
-                <input type="checkbox" name="days[]" value="Tuesday"> Tuesday
+                <input type="checkbox" name="days" value="Tuesday"> Tuesday
             </label>
             <label>
-                <input type="checkbox" name="days[]" value="Wednesday"> Wednesday
+                <input type="checkbox" name="days" value="Wednesday"> Wednesday
             </label>
             <label>
-                <input type="checkbox" name="days[]" value="Thursday"> Thursday
+                <input type="checkbox" name="days" value="Thursday"> Thursday
             </label>
             <label>
-                <input type="checkbox" name="days[]" value="Friday"> Friday
+                <input type="checkbox" name="days" value="Friday"> Friday
             </label>
             <label>
-                <input type="checkbox" name="days[]" value="Saturday"> Saturday
+                <input type="checkbox" name="days" value="Saturday"> Saturday
             </label>
             <label>
-                <input type="checkbox" name="days[]" value="Sunday"> Sunday
+                <input type="checkbox" name="days" value="Sunday"> Sunday
             </label>
             <input type="submit" value="Submit">
         </form>

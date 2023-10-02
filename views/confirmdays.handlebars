@@ -1,6 +1,6 @@
  <div class="container">
         <h2>Selected Days</h2>
-        <form action="/confirm" method="post">
+        <form action="/confirmdays/{{username}}" method="POST">
         <ul id="selected-days">
             <!-- Selected days will be displayed here dynamically -->
             {{#each selectedDays}}
