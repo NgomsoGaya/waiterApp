@@ -12,12 +12,6 @@ export default function render() {
 
   async function signUp(req, res, next) {
       try {
-        //   let name = req.body.username
-        //   let role = req.body.role
-        //   let password = req.body.password  
-          
-        //   await queryFunctions.signUp(name, role, password);
-          
       res.render("signup");
     } catch (error) {
       next(error);
@@ -45,15 +39,27 @@ export default function render() {
       next(error);
     }
   }
+    async function admin(req, res, next) {
+        try {
+            res.render("admin")
+        } catch (error) {
+            next(error)
+        }
+    }
 
   async function enter(req, res, next) {
     const username = req.body.username;
-    const password = req.body.password;
+      const password = req.body.password;
+      
+      let role = await queryFunctions.login(username, password)
+      console.log(role)
 
-    if ((username, password)) {
+    if ((username, password) && role == 'waiter') {
       res.redirect(`/choosedays/${username}`);
+    } else if ((username, password) && role == "admin") {
+        res.redirect(`/days/${username}`);
     } else {
-      res.redirect("/login");
+      res.redirect("/");
     }
   }
 
@@ -93,7 +99,8 @@ export default function render() {
   return {
       signUp,
       signUp2,
-    login,
+      login,
+    admin,
     enter,
     chooseDays,
     chosenDays,

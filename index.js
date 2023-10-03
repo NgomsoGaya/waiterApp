@@ -66,7 +66,7 @@ app.post("/choosedays/:username", mainrender.chosenDays);
 app.get("/confirmdays/:username", mainrender.confirmDays);
 app.post("/confirmdays/:username", );
 
-//app.get("/availablewaiters", );
+app.get("/days/:username", mainrender.admin);
 
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {

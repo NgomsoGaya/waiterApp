@@ -7,7 +7,26 @@ export default function query(db) {
             );
         }
     }
+
+    async function login(username, password) {
+        let role = null
+
+        if (username && password) {
+            
+            const user = await db.oneOrNone(
+                "SELECT role FROM users WHERE name = $1 AND password= $2",
+                 [username, password] 
+            )
+
+            if (user) {
+                role = user.role;
+            }
+        }
+        return role
+    }
+
     return {
-        signUp
+        signUp,
+        login
     }
 }
