@@ -55,7 +55,7 @@ app.use(
 const mainrender = render();
 
 app.get("/signup", mainrender.signUp);
-app.post("/signup", mainrender.signUp);
+app.post("/signup", mainrender.signUp2);
 
 app.get("/", mainrender.login);
 app.post("/login", mainrender.enter);
