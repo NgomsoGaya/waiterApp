@@ -52,7 +52,7 @@ export default function render() {
       const password = req.body.password;
       
       let role = await queryFunctions.login(username, password)
-      console.log(role)
+      //console.log(role)
 
     if ((username, password) && role == 'waiter') {
       res.redirect(`/choosedays/${username}`);
@@ -75,7 +75,7 @@ export default function render() {
 
   async function chosenDays(req, res, next) {
     const days = req.body.days;
-    console.log(days);
+    //console.log(days);
     const username = req.params.username;
 
     if (days) {
@@ -96,14 +96,26 @@ export default function render() {
     }
   }
 
+  async function confirmDaysPost(req, res, next) {
+    try {
+      const username = req.params.username;
+      queryFunctions.confirmDays(chosenDay, username);
+
+      res.redirect("/");
+    } catch (error) {
+      next(error);
+    }
+  }
+
   return {
-      signUp,
-      signUp2,
-      login,
+    signUp,
+    signUp2,
+    login,
     admin,
     enter,
     chooseDays,
     chosenDays,
     confirmDays,
+    confirmDaysPost,
   };
 }

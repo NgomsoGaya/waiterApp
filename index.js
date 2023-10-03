@@ -64,7 +64,7 @@ app.get("/choosedays/:username", mainrender.chooseDays);
 app.post("/choosedays/:username", mainrender.chosenDays);
 
 app.get("/confirmdays/:username", mainrender.confirmDays);
-app.post("/confirmdays/:username", );
+app.post("/confirmdays/:username", mainrender.confirmDaysPost);
 
 app.get("/days/:username", mainrender.admin);
 
