@@ -1,4 +1,5 @@
 export default function render() {
+    let chosenDay = []
 
     async function signUp(req, res, next) {
         try {
@@ -44,6 +45,7 @@ export default function render() {
         const username = req.params.username
 
         if (days) {
+            chosenDay = days 
             res.redirect(`/confirmdays/${username}`)
         } else {
             res.redirect(`/choosedays/${username}`);
@@ -54,7 +56,7 @@ export default function render() {
         try {
             const username = req.params.username;
 
-            res.render("confirmdays", {username})
+            res.render("confirmdays", {username, chosenDay})
         } catch (error) {
             next(error)
         }
