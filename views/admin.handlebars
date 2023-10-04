@@ -12,31 +12,31 @@
         <tbody id="schedule">
             <tr>
                 <td>Monday</td>
-                <td id="monday">{{22}}</td>
+                <td id="monday">{{#if mondayWaiter}}{{mondayWaiter}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Tuesday</td>
-                <td id="tuesday">{{22}}</td>
+                <td id="tuesday">{{#if tuesdayWaiter}}{{tuesdayWaiter}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Wednesday</td>
-                <td id="wednesday">{{22}}</td>
+                <td id="wednesday">{{#if wednesdayWaiter}}{{wednesdayWaiter}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Thursday</td>
-                <td id="thursday">{{22}}</td>
+                <td id="thursday">{{#if thursdayWaiter}}{{thursdayWaiter}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Friday</td>
-                <td id="friday">{{22}}</td>
+                <td id="friday">{{#if fridayWaiter}}{{fridayWaiter}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Saturday</td>
-                <td id="saturday">{{22}}</td>
+                <td id="saturday">{{#if saturdayWaiter}}{{saturdayWaiter}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Sunday</td>
-                <td id="sunday">{{22}}</td>
+                <td id="sunday">{{#if sundayWaiter}}{{sundayWaiter}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
         </tbody>
     </table>

@@ -40,8 +40,10 @@ export default function render() {
     }
   }
     async function admin(req, res, next) {
-        try {
-            res.render("admin")
+      try {
+        let name = await queryFunctions.displayWaiter()
+        
+        res.render("admin", { name})
         } catch (error) {
             next(error)
         }
