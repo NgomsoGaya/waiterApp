@@ -59,36 +59,16 @@ export default function query(db) {
         }
     }
     async function displayWaiter() {
-          try {
-            const scheduleData = await db.any(`
-            SELECT shifts.day, users.name AS waiterName
-            FROM shifts
-            LEFT JOIN usershifts ON shifts.id = usershifts.shift_id
-            LEFT JOIN users ON usershifts.user_id = users.id
-        `);
-
-            // Create an object to hold the data for each day
-            const schedule = {
-              mondayWaiter: null,
-              tuesdayWaiter: null,
-              wednesdayWaiter: null,
-              thursdayWaiter: null,
-              fridayWaiter: null,
-              saturdayWaiter: null,
-              sundayWaiter: null,
-            };
-
-            // Populate the schedule object with waiter names
-            scheduleData.forEach(({ day, waiterName }) => {
-              // Use day.toLowerCase() to match the variable names
-              schedule[`${day.toLowerCase()}Waiter`] =
-                waiterName || "No Waiter Assigned";
-            });
-
-            return schedule;
-          } catch (error) {
-            throw new Error(`Error fetching schedule data: ${error.message}`);
-          } 
+        let schedule = {
+            mondayWaiter: await db.any("SELECT user_id FROM usershifts WHERE shift_id = 1"),
+            tuesdayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 2"),
+            wednesdayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 3"),
+            thursdayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 4"),
+            fridayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 5"),
+            sartudayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 6"),
+            sundayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 7")
+        }
+        return schedule
     }
     
     return {
