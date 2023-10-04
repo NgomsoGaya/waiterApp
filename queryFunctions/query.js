@@ -60,14 +60,28 @@ export default function query(db) {
     }
     async function displayWaiter() {
         let schedule = {
-            mondayWaiter: await db.any("SELECT user_id FROM usershifts WHERE shift_id = 1"),
-            tuesdayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 2"),
-            wednesdayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 3"),
-            thursdayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 4"),
-            fridayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 5"),
-            sartudayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 6"),
-            sundayWaiter:  await db.any("SELECT user_id FROM usershifts WHERE shift_id = 7")
-        }
+          mondayWaiter: await db.any(
+            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 1"
+          ),
+          tuesdayWaiter: await db.any(
+            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 2"
+          ),
+          wednesdayWaiter: await db.any(
+            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 3"
+          ),
+          thursdayWaiter: await db.any(
+            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 4"
+          ),
+          fridayWaiter: await db.any(
+            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 5"
+          ),
+          sartudayWaiter: await db.any(
+            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 6"
+          ),
+          sundayWaiter: await db.any(
+            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 7"
+          ),
+        };
         return schedule
     }
     

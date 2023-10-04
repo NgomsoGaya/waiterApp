@@ -42,7 +42,7 @@ export default function render() {
     async function admin(req, res, next) {
       try {
         let name = await queryFunctions.displayWaiter()
-        
+
         res.render("admin", { name})
         } catch (error) {
             next(error)
@@ -77,7 +77,7 @@ export default function render() {
 
   async function chosenDays(req, res, next) {
     const days = req.body.days;
-    //console.log(days);
+
     const username = req.params.username;
 
     if (days) {
