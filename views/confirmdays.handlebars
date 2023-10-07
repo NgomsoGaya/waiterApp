@@ -1,7 +1,7 @@
  <div class="container">
         <h2>Selected Days</h2>
         <form action="/confirmdays/{{username}}" method="POST">
-        <ul id="selected-days">
+        <ul id="selected-days" class="no-bullets">
             <!-- Selected days will be displayed here dynamically -->
             {{#each chosenDay}}
                 <li>{{this}}</li>

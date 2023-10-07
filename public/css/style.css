@@ -1,9 +1,9 @@
      /* Container Styles */
         .container {
-            width: 300px;
+            width: 50%;
             margin: 0 auto;
             text-align: center;
-            padding: 20px;
+            padding: 10%;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -36,7 +36,7 @@
         }
 
         input[type="submit"] {
-            width: 100%;
+            width: 40%;
             padding: 10px;
             background-color: #007bff;
             color: #fff;
@@ -49,8 +49,60 @@
         .signup-link {
             margin-top: 15px;
         }
+        .login-link {
+             margin-top: 15px;
+        }
 
         .signup-link a {
             color: #007bff;
             text-decoration: none;
         }
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        
+        .no-bullets {
+            list-style: none;
+            text-align: center;
+        }
+
+        /* Style the table */
+table {
+    width: 70%;
+    margin: auto;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Style the table header (thead) */
+thead {
+    background-color: #f2f2f2;
+}
+
+thead th {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style the table data (tbody) */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:hover {
+    background-color: #ddd;
+}
+
+tbody td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Style the h1 header */
+h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
