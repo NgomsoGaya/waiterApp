@@ -91,4 +91,4 @@ export default function query(db) {
         confirmDays,
         displayWaiter
     }
-}
+};
