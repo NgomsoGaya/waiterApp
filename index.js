@@ -46,7 +46,7 @@ app.use(bodyParser.json());
 //configuring session management using express-session. Sessions are used to maintain user data across requests.
 app.use(
   session({
-    secret: "registration with routes",
+    secret: "waiterApplication",
     resave: false,
     saveUninitialized: true,
   })

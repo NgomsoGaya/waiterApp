@@ -56,9 +56,9 @@ export default function render() {
       let role = await queryFunctions.login(username, password)
       //console.log(role)
 
-    if ((username, password) && role == 'waiter') {
+    if (username && password && role == 'waiter') {
       res.redirect(`/choosedays/${username}`);
-    } else if ((username, password) && role == "admin") {
+    } else if (username && password && role == "admin") {
         res.redirect(`/days/${username}`);
     } else {
       res.redirect("/");
