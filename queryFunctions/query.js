@@ -84,11 +84,16 @@ export default function query(db) {
         };
         return schedule
     }
+  
+  async function clearWaiters() {
+    await db.none("DELETE FROM usershifts")
+  }
     
     return {
         signUp,
         login,
         confirmDays,
-        displayWaiter
+        displayWaiter,
+        clearWaiters
     }
 };

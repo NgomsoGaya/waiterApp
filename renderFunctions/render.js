@@ -109,6 +109,17 @@ export default function render() {
     }
   }
 
+  async function clear(req, res, next) {
+    try {
+       const username = req.params.username;
+      queryFunctions.clearWaiters()
+
+      res.redirect(`/days/${username}`);
+    } catch (error) {
+      next(error)
+    }
+  }
+
   return {
     signUp,
     signUp2,
@@ -119,5 +130,6 @@ export default function render() {
     chosenDays,
     confirmDays,
     confirmDaysPost,
+    clear
   };
 }

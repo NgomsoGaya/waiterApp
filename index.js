@@ -67,6 +67,7 @@ app.get("/confirmdays/:username", mainrender.confirmDays);
 app.post("/confirmdays/:username", mainrender.confirmDaysPost);
 
 app.get("/days/:username", mainrender.admin);
+app.post("/admin", mainrender.clear)
 
 const PORT = process.env.PORT || 3030;
 app.listen(PORT, () => {
