@@ -1,5 +1,6 @@
  <div class="container">
-        <h2>Choose Your Working Days</h2>
+        <h2>Choose Your Working Days, {{username}}</h2>
+        <p id="loginSuccess">{{loginSuccess}}</p>
         <form action="/choosedays/{{username}}" method="POST">
             <label>
                 <input type="checkbox" name="days" value="Monday"> Monday

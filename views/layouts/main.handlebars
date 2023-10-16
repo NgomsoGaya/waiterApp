@@ -8,5 +8,14 @@
 </head>
 <body>
     {{{body}}}
+
+     <script>
+        setTimeout(function() {
+            var invalidErrMsg = document.getElementById("invalidUsername");
+                invalidErrMsg.style.display = "none";
+            var loginSuccess = document.getElementById("loginSuccess");
+                loginSuccess.style.display = "none";   
+        }, 5000);
+    </script>
 </body>
 </html>

@@ -1,4 +1,6 @@
 import query from "../queryFunctions/query.js";
+import frontEnd from "../frontEndFunctions/frontEnd.js";
+
 import pgPromise from "pg-promise";
 import "dotenv/config";
 const connectionString = process.env.DATABASE_URL;
@@ -6,6 +8,7 @@ const pgp = pgPromise();
 const db = pgp(connectionString);
 
 const queryFunctions = query(db);
+const frontEndFunctions = frontEnd()
 
 export default function render() {
   let chosenDay = [];
@@ -54,14 +57,15 @@ export default function render() {
       const password = req.body.password;
       
       let role = await queryFunctions.login(username, password)
-      //console.log(role)
+    //console.log(role)
+   let invalidUsername = frontEndFunctions.loginMessage()
 
     if (username && password && role == 'waiter') {
       res.redirect(`/choosedays/${username}`);
     } else if (username && password && role == "admin") {
         res.redirect(`/days/${username}`);
-    } else {
-      res.redirect("/");
+    } else if(username && password && role == null){
+      res.render("login", {invalidUsername});
     }
   }
 
@@ -69,7 +73,9 @@ export default function render() {
     try {
       const username = req.params.username;
 
-      res.render("choosedays", { username });
+      let loginSuccess = frontEndFunctions.loginSuccessMessage()
+
+      res.render("choosedays", { username, loginSuccess});
     } catch (error) {
       next(error);
     }
@@ -102,8 +108,9 @@ export default function render() {
     try {
       const username = req.params.username;
       queryFunctions.confirmDays(chosenDay, username);
+      let confirmMessage = frontEndFunctions.confirmDaysMessage()
 
-      res.redirect("/");
+      res.render("confirmdays", { confirmMessage});
     } catch (error) {
       next(error);
     }
@@ -113,8 +120,9 @@ export default function render() {
     try {
        const username = req.params.username;
       queryFunctions.clearWaiters()
+      let clearSuccess = frontEndFunctions.resetDaysMessage()
 
-      res.redirect(`/days/${username}`);
+      res.render("admin", { clearSuccess });
     } catch (error) {
       next(error)
     }
