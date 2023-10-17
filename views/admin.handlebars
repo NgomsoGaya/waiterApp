@@ -11,31 +11,31 @@
         <tbody id="schedule">
             <tr>
                 <td>Monday</td>
-                <td id="monday">{{#if name.mondayWaiter}}{{#each name.mondayWaiter}}-{{this.name}}{{/each}}{{else}}No Waiter Assigned{{/if}}</td>
+                <td id="mondayWaiter" class="{{color.[0]}}">{{#if name.mondayWaiter}}{{#each name.mondayWaiter}} <li>{{this.name}}</li> {{/each}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Tuesday</td>
-                <td id="tuesday">{{#if name.tuesdayWaiter}}{{#each name.tuesdayWaiter}}-{{this.name}}{{/each}}{{else}}No Waiter Assigned{{/if}}</td>
+                <td id="tuesdayWaiter" class="{{color.[1]}}">{{#if name.tuesdayWaiter}}{{#each name.tuesdayWaiter}} <li>{{this.name}}</li> {{/each}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Wednesday</td>
-                <td id="wednesday">{{#if name.wednesdayWaiter}}{{#each name.wednesdayWaiter}}-{{this.name}}{{/each}}{{else}}No Waiter Assigned{{/if}}</td>
+                <td id="wednesdayWaiter" class="{{color.[2]}}">{{#if name.wednesdayWaiter}}{{#each name.wednesdayWaiter}} <li>{{this.name}}</li> {{/each}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Thursday</td>
-                <td id="thursday">{{#if name.thursdayWaiter}}{{#each name.thursdayWaiter}}-{{this.name}}{{/each}}{{else}}No Waiter Assigned{{/if}}</td>
+                <td id="thursdayWaiter" class="{{color.[3]}}">{{#if name.thursdayWaiter}}{{#each name.thursdayWaiter}} <li>{{this.name}}</li> {{/each}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Friday</td>
-                <td id="friday">{{#if name.fridayWaiter}}{{#each name.fridayWaiter}}-{{this.name}}{{/each}}{{else}}No Waiter Assigned{{/if}}</td>
+                <td id="fridayWaiter" class="{{color.[4]}}">{{#if name.fridayWaiter}}{{#each name.fridayWaiter}} <li>{{this.name}}</li> {{/each}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Saturday</td>
-                <td id="saturday">{{#if name.saturdayWaiter}}{{#each name.saturdayWaiter}}-{{this.name}}{{/each}}{{else}}No Waiter Assigned{{/if}}</td>
+                <td id="sartudayWaiter" class="{{color.[5]}}">{{#if name.saturdayWaiter}}{{#each name.saturdayWaiter}} <li>{{this.name}}</li> {{/each}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
             <tr>
                 <td>Sunday</td>
-                <td id="sunday">{{#if name.sundayWaiter}}{{#each name.sundayWaiter}}-{{this.name}}{{/each}}{{else}}No Waiter Assigned{{/if}}</td>
+                <td id="sundayWaiter" class="{{color.[6]}}">{{#if name.sundayWaiter}}{{#each name.sundayWaiter}} <li>{{this.name}}</li> {{/each}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
         </tbody>
     </table>

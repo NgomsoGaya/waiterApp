@@ -111,3 +111,15 @@ h1 {
 .clearForm {
    text-align: center;
 }
+
+.fewWaiter {
+    color: red;
+}
+
+.enoughWaiter {
+    color: green;
+}
+
+.moreWaiter {
+    color: orange;
+}

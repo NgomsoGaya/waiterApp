@@ -82,6 +82,7 @@ export default function query(db) {
             "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 7"
           ),
         };
+      
         return schedule
     }
   

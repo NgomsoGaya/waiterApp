@@ -44,12 +44,38 @@ export default function render() {
   }
     async function admin(req, res, next) {
       try {
-        let name = await queryFunctions.displayWaiter()
+        let name = await queryFunctions.displayWaiter();
+        const noOfWaiters = [];
 
-        res.render("admin", { name})
-        } catch (error) {
-            next(error)
+        for (const day in name) {
+          if (name.hasOwnProperty(day)) {
+            const waiters = name[day];
+            noOfWaiters.push(waiters.length);
+          }
         }
+
+        const colors = [];
+
+        for (let i = 0; i < noOfWaiters.length; i++) {
+          const element = noOfWaiters[i];
+
+          if (element == 3) {
+            colors.push("enoughWaiter");
+          } else if (element > 3) {
+            colors.push("moreWaiter");
+          } else if (element < 3) {
+            colors.push("fewWaiter");
+          }
+        }
+
+        let color = colors;
+        
+        //console.log(color)
+        res.render("admin", { name, color });
+      } catch (error) {
+        next(error);
+      }
+
     }
 
   async function enter(req, res, next) {

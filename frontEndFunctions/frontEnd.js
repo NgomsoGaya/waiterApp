@@ -1,22 +1,9 @@
 export default function frontEnd() {
-    function changeColor(list) {
-        if (list.number == 3) {
-            //let the color of the names be GREEN
-        }
-        else if (list.number < 3) {
-            //let the color of the names be RED
-        }
-        else if (list.number > 3) {
-            //let the color of the names be ORANGE
-        }
-    }
+   
     function loginMessage() {
         //if name don't exist display error message
         return 'Invalid name or password.'
         //if password don't match display error message
-
-       
-
     }
 
     function loginSuccessMessage() {
@@ -43,7 +30,6 @@ export default function frontEnd() {
 
 
     return {
-        changeColor,
         loginMessage,
         loginSuccessMessage,
         signUpMessage,
