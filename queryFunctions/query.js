@@ -89,12 +89,18 @@ export default function query(db) {
   async function clearWaiters() {
     await db.none("DELETE FROM usershifts")
   }
-    
+  
+  async function keepButtonsChecked() {
+    //on login go to database and see which days the logged in person selected
+
+    //then on handlebars check the checkboxes that match those days 
+  }
     return {
         signUp,
         login,
         confirmDays,
         displayWaiter,
-        clearWaiters
+        clearWaiters,
+        keepButtonsChecked
     }
 };
