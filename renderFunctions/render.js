@@ -127,7 +127,7 @@ export default function render() {
         checked: daysChecked.includes(day),
       }));
 
-      console.log(preprocessedData);
+      //console.log(preprocessedData);
 
       res.render("choosedays", { username, loginSuccess, preprocessedData });
     } catch (error) {
