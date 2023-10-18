@@ -8,7 +8,7 @@
         {{this.day}}
         {{/each}} --}}
 
-            <label>
+            {{!-- <label>
                 <input type="checkbox" name="days" value="Monday"> Monday
             </label>
             <label>
@@ -28,7 +28,14 @@
             </label>
             <label>
                 <input type="checkbox" name="days" value="Sunday"> Sunday
+            </label> --}}
+
+            {{#each preprocessedData}}
+            <label>
+            <input type="checkbox" name="days" value="{{this.day}}" {{#if this.checked}}checked{{/if}}>
+            {{this.day}}
             </label>
+            {{/each}}
 
             <input type="submit" value="Submit">
         </form>

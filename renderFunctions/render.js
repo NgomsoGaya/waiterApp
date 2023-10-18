@@ -112,24 +112,24 @@ export default function render() {
 
       //console.log(daysChecked);
 
-      // const daysOfWeek = [
-      //   "Sunday",
-      //   "Monday",
-      //   "Tuesday",
-      //   "Wednesday",
-      //   "Thursday",
-      //   "Friday",
-      //   "Saturday",
-      // ];
+      const daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
 
-      // const preprocessedData = daysOfWeek.map((day) => ({
-      //   day,
-      //   checked: daysChecked.includes(day),
-      // }));
+      const preprocessedData = daysOfWeek.map((day) => ({
+        day,
+        checked: daysChecked.includes(day),
+      }));
 
       //console.log(preprocessedData);
 
-      res.render("choosedays", { username, loginSuccess });
+      res.render("choosedays", { username, loginSuccess, preprocessedData});
     } catch (error) {
       next(error);
     }
