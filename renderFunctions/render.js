@@ -99,9 +99,37 @@ export default function render() {
     try {
       const username = req.params.username;
 
-      let loginSuccess = frontEndFunctions.loginSuccessMessage()
+      let loginSuccess = frontEndFunctions.loginSuccessMessage();
 
-      res.render("choosedays", { username, loginSuccess});
+      let daysFromDb = await queryFunctions.keepButtonsChecked(username);
+
+      // console.log(daysFromDb);
+      let daysChecked = [];
+      for (let i = 0; i < daysFromDb.length; i++) {
+        const element = daysFromDb[i].day;
+        daysChecked.push(element);
+      }
+
+      //console.log(daysChecked);
+
+      const daysOfWeek = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+
+      const preprocessedData = daysOfWeek.map((day) => ({
+        day,
+        checked: daysChecked.includes(day),
+      }));
+
+      console.log(preprocessedData);
+
+      res.render("choosedays", { username, loginSuccess, preprocessedData });
     } catch (error) {
       next(error);
     }
@@ -111,6 +139,8 @@ export default function render() {
     const days = req.body.days;
 
     const username = req.params.username;
+
+
 
     if (days) {
       chosenDay = days;

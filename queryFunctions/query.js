@@ -90,10 +90,25 @@ export default function query(db) {
     await db.none("DELETE FROM usershifts")
   }
   
-  async function keepButtonsChecked() {
+  async function keepButtonsChecked(userName) {
     //on login go to database and see which days the logged in person selected
+    try {
+      // Query to select the days for a given user name
+      const query = `
+      SELECT s.day
+      FROM users AS u
+      JOIN usershifts AS us ON u.id = us.user_id
+      JOIN shifts AS s ON us.shift_id = s.id
+      WHERE u.name = $1;
+    `;
 
-    //then on handlebars check the checkboxes that match those days 
+      // Execute the query with the user's name as a parameter
+      const selectedDays = await db.manyOrNone(query, [userName]);
+
+      return selectedDays;
+    } catch (error) {
+      throw error;
+    }
   }
     return {
         signUp,
