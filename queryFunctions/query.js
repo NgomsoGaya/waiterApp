@@ -50,11 +50,19 @@ export default function query(db) {
                 [username]
             ))
 
-            for (const shiftIdValue of allIds) {
-                await db.none(
-                  "INSERT INTO usershifts (user_id, shift_id) VALUES ($1, $2)",
+          for (const shiftIdValue of allIds) {
+              
+            const combinationExists = await db.oneOrNone(
+                  "SELECT user_id, shift_id FROM usershifts WHERE user_id = $1 AND shift_id = $2",
                   [userId[0].id, shiftIdValue]
-                );
+            );
+            
+            if (!combinationExists) {
+              await db.none(
+                "INSERT INTO usershifts (user_id, shift_id) VALUES ($1, $2)",
+                [userId[0].id, shiftIdValue]
+              );
+            }
             }
         }
     }
