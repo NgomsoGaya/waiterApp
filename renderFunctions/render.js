@@ -62,9 +62,9 @@ export default function render() {
           if (element == 3) {
             colors.push("enoughWaiter");
           } else if (element > 3) {
-            colors.push("moreWaiter");
-          } else if (element < 3) {
             colors.push("fewWaiter");
+          } else if (element < 3) {
+            colors.push("moreWaiter");
           }
         }
 
