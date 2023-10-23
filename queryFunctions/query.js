@@ -28,44 +28,53 @@ export default function query(db) {
 
     const userId = []
 
-    async function confirmDays(arrayOfDays, username) {
-        let shiftId = []
-        const allIds = []
-        if (arrayOfDays && username) {
-            for (let i = 0; i < arrayOfDays.length; i++) {
-                const element = arrayOfDays[i];
-                shiftId.push(await db.any(
-                    "SELECT id FROM shifts WHERE day = $1",
-                    [element]
-                ))
-            }
-            shiftId.forEach(innerArray => {
-                innerArray.forEach(obj => {
-                    allIds.push(obj.id)
-                })
-            })
+   async function confirmDays(arrayOfDays, username) {
+     if (arrayOfDays && username) {
+       // Fetch the current shift IDs for the user
+       const existingShifts = await db.manyOrNone(
+         "SELECT shift_id FROM usershifts WHERE user_id = (SELECT id FROM users WHERE name = $1)",
+         [username]
+       );
 
-            userId.push(await db.oneOrNone(
-                "SELECT id FROM users WHERE name = $1",
-                [username]
-            ))
+       // Convert the result to an array of shift IDs
+       const existingShiftIds = existingShifts.map((shift) => shift.shift_id);
 
-          for (const shiftIdValue of allIds) {
-              
-            const combinationExists = await db.oneOrNone(
-                  "SELECT user_id, shift_id FROM usershifts WHERE user_id = $1 AND shift_id = $2",
-                  [userId[0].id, shiftIdValue]
-            );
-            
-            if (!combinationExists) {
-              await db.none(
-                "INSERT INTO usershifts (user_id, shift_id) VALUES ($1, $2)",
-                [userId[0].id, shiftIdValue]
-              );
-            }
-            }
-        }
-    }
+       // Iterate through the existingShiftIds and check if they are not in arrayOfDays
+       for (const shiftId of existingShiftIds) {
+         if (!arrayOfDays.includes(shiftId)) {
+           // If the shift_id is not in arrayOfDays, remove it from usershifts
+           await db.none(
+             "DELETE FROM usershifts WHERE user_id = (SELECT id FROM users WHERE name = $1) AND shift_id = $2",
+             [username, shiftId]
+           );
+         }
+       }
+
+       // Fetch and insert new shifts
+       for (const day of arrayOfDays) {
+         const shiftId = await db.oneOrNone(
+           "SELECT id FROM shifts WHERE day = $1",
+           [day]
+         );
+         if (shiftId) {
+           // Check if the combination already exists
+           const combinationExists = await db.oneOrNone(
+             "SELECT user_id, shift_id FROM usershifts WHERE user_id = (SELECT id FROM users WHERE name = $1) AND shift_id = $2",
+             [username, shiftId.id]
+           );
+
+           if (!combinationExists) {
+             // Insert the new combination
+             await db.none(
+               "INSERT INTO usershifts (user_id, shift_id) VALUES ((SELECT id FROM users WHERE name = $1), $2)",
+               [username, shiftId.id]
+             );
+           }
+         }
+       }
+     }
+   }
+
     async function displayWaiter() {
         let schedule = {
           mondayWaiter: await db.any(
