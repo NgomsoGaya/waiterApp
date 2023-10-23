@@ -145,6 +145,16 @@ h1 {
     /* padding: 10px; Optional padding for the container */
 }
 
+.admin-container {
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: center;
+    text-align: center;
+    min-width: 100%;
+    /* border: 1px solid #ccc; Add a border for visualization */
+    /* padding: 10px; Optional padding for the container */
+}
+
 .chooseDays {
     border: 1px solid #ccc; /* Add a border for visualization */
     padding: 40px; /* Optional padding for the container */
@@ -154,3 +164,4 @@ h1 {
 #confirm-button{
     margin-bottom: 2%;
 }
+

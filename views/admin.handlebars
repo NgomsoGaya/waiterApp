@@ -1,7 +1,7 @@
+<div class="admin-container">
 <form action="/admin" method="post">
     <h1>Weekly Schedule</h1>
-
-    <table>
+   <table>
         <thead>
             <tr>
                 <th>Day</th>
@@ -38,17 +38,19 @@
                 <td id="sundayWaiter" class="{{color.[6]}}">{{#if name.sundayWaiter}}{{#each name.sundayWaiter}} <li>{{this.name}}</li> {{/each}}{{else}}No Waiter Assigned{{/if}}</td>
             </tr>
         </tbody>
-    </table>
+    </table>   
 </form>
 
 <p id="clearSuccess">{{clearSuccess}}</p>
 {{!-- insert waiter names here and view the days each of them are working --}}
 
+
 <form class="clearForm" action="/admin" method="POST"  onsubmit="return confirm('Are you sure you want to clear the data?');">
       <button type="submit" class="clear">Clear</button>
 </form>
 
-
-<form action="/" method="get">
+   <form action="/" method="get">
         <button id="logout">Logout</button>
-</form>
+</form> 
+</div>
+
