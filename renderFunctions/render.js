@@ -45,6 +45,7 @@ export default function render() {
     async function admin(req, res, next) {
       try {
         let name = await queryFunctions.displayWaiter();
+        //console.log(name)
         const noOfWaiters = [];
 
         for (const day in name) {
@@ -137,10 +138,8 @@ export default function render() {
 
   async function chosenDays(req, res, next) {
     const days = req.body.days;
-
+    //console.log(days);
     const username = req.params.username;
-
-
 
     if (days) {
       chosenDay = days;
