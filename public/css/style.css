@@ -1,3 +1,11 @@
+     body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+     }
+     
      /* Container Styles */
         .container {
             width: 50%;
@@ -16,6 +24,10 @@
 
         /* Form Styles */
         form {
+            display: flex; /* Make the form a flex container */
+            flex-direction: column; /* Align children vertically (if needed) */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
             margin-top: 20px;
         }
 
@@ -37,7 +49,7 @@
 
         input[type="submit"],
         button {
-            width: 40%;
+            width: 50%;
             padding: 10px;
             background-color: #007bff;
             color: #fff;
@@ -63,10 +75,10 @@
             text-decoration: none;
         }
         
-        .no-bullets {
-            list-style: none;
-            text-align: center;
-        }
+        /* .no-bullets { */
+            /* list-style: none; */
+            /* text-align: center; */
+        /* } */
 
         /* Style the table */
 table {
@@ -122,4 +134,23 @@ h1 {
 
 .moreWaiter {
     color: orange;
+}
+
+.center-container {
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: center;
+    text-align: center;
+    border: 1px solid #ccc; /* Add a border for visualization */
+    /* padding: 10px; Optional padding for the container */
+}
+
+.chooseDays {
+    border: 1px solid #ccc; /* Add a border for visualization */
+    padding: 40px; /* Optional padding for the container */
+    margin-bottom: 10%;
+}
+
+#confirm-button{
+    margin-bottom: 2%;
 }

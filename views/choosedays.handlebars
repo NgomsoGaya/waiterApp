@@ -2,14 +2,15 @@
         <h2>Choose Your Working Days, {{username}}</h2>
         <p id="loginSuccess">{{loginSuccess}}</p>
         <form action="/choosedays/{{username}}" method="POST">
-
+        <div class="chooseDays">
             {{#each preprocessedData}}
             <label>
             <input type="checkbox" name="days" value="{{this.day}}" {{#if this.checked}}checked{{/if}}>
             {{this.day}}
             </label>
             {{/each}}
-
+        </div>
+            
             <input type="submit" value="Submit">
         </form>
     </div>

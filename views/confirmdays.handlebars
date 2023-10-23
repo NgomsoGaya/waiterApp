@@ -1,5 +1,8 @@
  <div class="container">
         <h2>Selected Days</h2>
+
+        <div class="center-container">
+            
         <form action="/confirmdays/{{username}}" method="POST">
         <ul id="selected-days" class="no-bullets">
             <!-- Selected days will be displayed here dynamically -->
@@ -7,13 +10,18 @@
         <li>{{this}}</li>
         {{/each}}
         </ul>
+
         <p>{{confirmMessage}}</p>
+        
         {{# if showButton}}
         <button id="confirm-button">Confirm</button>
         {{/if}}
-        </form>  
+        </form> 
 
+        </div>
+         
         <form action="/" method="get">
         <button id="logout">Logout</button>
-        </form>    
+        </form>  
+
 </div>
