@@ -8,7 +8,9 @@
         {{/each}}
         </ul>
         <p>{{confirmMessage}}</p>
+        {{# if showButton}}
         <button id="confirm-button">Confirm</button>
+        {{/if}}
         </form>  
 
         <form action="/" method="get">

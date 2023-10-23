@@ -152,8 +152,9 @@ export default function render() {
   async function confirmDays(req, res, next) {
     try {
       const username = req.params.username;
+      const showButton = true;
 
-      res.render("confirmdays", { username, chosenDay });
+      res.render("confirmdays", { username, chosenDay, showButton });
     } catch (error) {
       next(error);
     }
@@ -165,7 +166,9 @@ export default function render() {
       queryFunctions.confirmDays(chosenDay, username);
       let confirmMessage = frontEndFunctions.confirmDaysMessage()
 
-      res.render("confirmdays", { confirmMessage});
+      const showButton = false;
+      
+      res.render("confirmdays", { confirmMessage, showButton });
     } catch (error) {
       next(error);
     }
