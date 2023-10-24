@@ -6,9 +6,9 @@ export default function frontEnd() {
         //if password don't match display error message
     }
 
-    function loginSuccessMessage() {
-        return 'You have been logged in successfully.'
-    }
+    // function loginSuccessMessage() {
+    //     return 'You have been logged in successfully.'
+    // }
 
     function signUpMessage(username, role, password, confirmpassword) {
         //display meassage for successful sign up
@@ -40,7 +40,7 @@ export default function frontEnd() {
 
     return {
         loginMessage,
-        loginSuccessMessage,
+       // loginSuccessMessage,
         signUpMessage,
         signUpMessage2,
         confirmDaysMessage,

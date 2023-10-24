@@ -11,7 +11,8 @@
      
      /* Container Styles */
         .container {
-            width: 20%;
+            width: 50%;
+            max-width: 400px;
             margin: 0 auto;
             text-align: center;
             padding: 5%;
@@ -85,7 +86,8 @@
 
         /* Style the table */
 table {
-    width: 40%;
+    width: 50%;
+    /* max-width: 400px; */
     margin: auto;
     border-collapse: collapse;
     margin-bottom: 20px;
@@ -122,7 +124,7 @@ tbody td {
 
 /* Style the h1 header */
 h1 {
-    font-size: 60px;
+    font-size: 40px;
     margin-bottom: 20px;
     text-align: center;
     color: white;
@@ -241,4 +243,32 @@ h1 {
     font-size: large;
     font-weight: bold;
     color: green;
+}
+
+@media screen and (max-width: 768px) {
+    /* Apply styles for screens up to 768px wide */
+    body {
+        background-size: cover; /* Adjust background size */
+    }
+    .container {
+        width: 90%; /* Adjust container width */
+    }
+    h1 {
+        font-size: 30px; /* Adjust font size */
+    }
+    /* Add more responsive styles as needed */
+}
+
+/* Example: Media Query for Smaller Screens */
+@media screen and (max-width: 480px) {
+    body {
+        background-size: cover; /* Adjust background size */
+    }
+    .container {
+        width: 95%; /* Adjust container width */
+    }
+    h1 {
+        font-size: 24px; /* Adjust font size */
+    }
+    /* Add more responsive styles as needed */
 }
