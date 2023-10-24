@@ -1,4 +1,7 @@
      body {
+            background-image: url("coffe.avif");
+            background-repeat: no-repeat;
+            background-size: cover;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -8,10 +11,10 @@
      
      /* Container Styles */
         .container {
-            width: 50%;
+            width: 20%;
             margin: 0 auto;
             text-align: center;
-            padding: 10%;
+            padding: 5%;
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -19,7 +22,7 @@
 
         /* Header Styles */
         h2 {
-            color: #333;
+            color:white;
         }
 
         /* Form Styles */
@@ -35,7 +38,7 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: #555;
+            color: white;
         }
 
         input[type="text"],
@@ -75,14 +78,13 @@
             text-decoration: none;
         }
         
-        /* .no-bullets { */
-            /* list-style: none; */
-            /* text-align: center; */
-        /* } */
+        .no-bullets { 
+            color: white;
+        }
 
         /* Style the table */
 table {
-    width: 70%;
+    width: 40%;
     margin: auto;
     border-collapse: collapse;
     margin-bottom: 20px;
@@ -95,29 +97,38 @@ thead {
 
 thead th {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
 /* Style the table data (tbody) */
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
+tbody tr {
+    background-color: burlywood;
+    /* min-width: 30%; */
+ }
 
 tbody tr:hover {
     background-color: #ddd;
 }
 
 tbody td {
-    padding: 10px;
+    padding: 5px;
     border-bottom: 1px solid #ddd;
+    color: white;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* Style the h1 header */
 h1 {
-    font-size: 40px;
+    font-size: 60px;
     margin-bottom: 20px;
     text-align: center;
+    color: burlywood;
+    /* font-size: larger; */
+    /* font-weight: bolder; */
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
 }
 
 .clearForm {
@@ -141,7 +152,7 @@ h1 {
     /* flex-direction: column; */
     align-items: center;
     text-align: center;
-    border: 1px solid #ccc; /* Add a border for visualization */
+    /* border: 1px solid #ccc; Add a border for visualization */
     /* padding: 10px; Optional padding for the container */
 }
 
@@ -156,7 +167,7 @@ h1 {
 }
 
 .chooseDays {
-    border: 1px solid #ccc; /* Add a border for visualization */
+    /* border: 1px solid #ccc; Add a border for visualization */
     padding: 40px; /* Optional padding for the container */
     margin-bottom: 10%;
 }
@@ -165,3 +176,48 @@ h1 {
     margin-bottom: 2%;
 }
 
+#invalidUsername{
+    color: red;
+}
+
+.clear {
+    max-width: 10%;
+}
+#logout{
+    max-width: 10%;
+}
+.confirmMessage{
+    color: green;
+    font-size: larger;
+    font-weight: bold;
+}
+.loginFootMsg{
+    font-size: large;
+    font-weight: bold;
+    color: white;
+}
+.signUpFootMsg{
+    font-size: large;
+    font-weight: bold;
+    color: white;
+}
+
+#loginSuccess{
+    font-size: large;
+    font-weight: bold;
+    color: green;
+}
+.check{
+    /* min-width: 100px; */
+    color: green;
+    /* font-size: 25px; */
+}
+
+.material-symbols-outlined {
+    font-size: 100px !important;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 144;
+}

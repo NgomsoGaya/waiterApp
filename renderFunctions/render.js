@@ -100,7 +100,8 @@ export default function render() {
     try {
       const username = req.params.username;
 
-      let loginSuccess = frontEndFunctions.loginSuccessMessage();
+      // let loginSuccess = frontEndFunctions.loginSuccessMessage();
+
 
       let daysFromDb = await queryFunctions.keepButtonsChecked(username);
 
@@ -130,7 +131,7 @@ export default function render() {
 
       //console.log(preprocessedData);
 
-      res.render("choosedays", { username, loginSuccess, preprocessedData});
+      res.render("choosedays", { username, preprocessedData});
     } catch (error) {
       next(error);
     }
