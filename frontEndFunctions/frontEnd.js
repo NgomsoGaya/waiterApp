@@ -11,11 +11,20 @@ export default function frontEnd() {
     }
 
     function signUpMessage(username, role, password, confirmpassword) {
-        //if name already exist display error message
-
-        //if password don't match display error message
-
         //display meassage for successful sign up
+        if ((username && role && password && confirmpassword)) {
+            if (password !== confirmpassword) {
+                return 'The provided passwords do not match'
+            }
+        }
+    }
+    function signUpMessage2(username, role, password, confirmpassword) {
+      //display meassage for successful sign up
+      if (username && role && password && confirmpassword) {
+        if (password == confirmpassword) {
+          return "You have signed up successfully.";
+        }
+      }
     }
 
     function confirmDaysMessage() {
@@ -33,6 +42,7 @@ export default function frontEnd() {
         loginMessage,
         loginSuccessMessage,
         signUpMessage,
+        signUpMessage2,
         confirmDaysMessage,
         resetDaysMessage
     }

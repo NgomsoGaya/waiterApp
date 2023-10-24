@@ -26,10 +26,14 @@ export default function render() {
         let name = req.body.username;
         let role = req.body.role;
         let password = req.body.password;
+        let confirm = req.body.confirm_password;
 
-        await queryFunctions.signUp(name, role, password, password);
+        let msg = frontEndFunctions.signUpMessage(name, role, password, confirm)
+        let msg2 = frontEndFunctions.signUpMessage2(name, role, password, confirm)
 
-        res.redirect("/");
+        await queryFunctions.signUp(name, role, password, confirm);
+        
+        res.render("signup", {msg, msg2});
       } catch (error) {
         next(error);
       }
