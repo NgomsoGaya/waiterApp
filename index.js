@@ -60,13 +60,16 @@ app.post("/signup", mainrender.signUp2);
 app.get("/", mainrender.login);
 app.post("/login", mainrender.enter);
 
-app.get("/choosedays/:username", mainrender.chooseDays);
+app.get("/choosedays/:username", mainrender.restrictAccessToUserRoutes, mainrender.chooseDays);
 app.post("/choosedays/:username", mainrender.chosenDays);
 
-app.get("/confirmdays/:username", mainrender.confirmDays);
+app.get("/confirmdays/:username", mainrender.restrictAccessToUserRoutes, mainrender.confirmDays);
 app.post("/confirmdays/:username", mainrender.confirmDaysPost);
 
-app.get("/days/:username", mainrender.admin);
+app.get(
+  "/days/:username",
+  mainrender.restrictAccessToUserRoutes,mainrender.admin
+);
 app.post("/admin", mainrender.clear)
 
 const PORT = process.env.PORT || 3030;
