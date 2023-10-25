@@ -1,5 +1,6 @@
 import assert from "assert";
 import query from "../queryFunctions/query.js";
+import frontEnd from "../frontEndFunctions/frontEnd.js"
 import pgPromise from "pg-promise";
 const pgp = pgPromise();
 
@@ -13,7 +14,8 @@ const db = pgp(testConnectionString);
 describe("Testing my waiter Web App", function () {
   this.timeout(20000);
 
-  beforeEach(async function () {
+  describe("Testing my back end functions", function () { 
+    beforeEach(async function () {
     try {
       // Insert test data into the test database
       // await db.none(
@@ -99,4 +101,57 @@ describe("Testing my waiter Web App", function () {
   //     console.log(err);
   //   }
   //});
+  })
+  
+  describe("Testing frontEnd functions", function () {
+    const {
+      loginMessage,
+      signUpMessage,
+      signUpMessage2,
+      confirmDaysMessage,
+      resetDaysMessage,
+    } = frontEnd();
+
+    it("Should return 'Invalid name or password' for loginMessage when inputs are missing", function () {
+      const message = loginMessage();
+      assert.strictEqual(message, "Invalid name or password.");
+    });
+
+    it("Should return 'The provided passwords do not match' for signUpMessage when passwords don't match", function () {
+      const message = signUpMessage(
+        "username",
+        "role",
+        "password1",
+        "password2"
+      );
+      assert.strictEqual(message, "The provided passwords do not match");
+    });
+
+    it("Should return 'You have signed up successfully.' for signUpMessage2 when all inputs are provided and passwords match", function () {
+      const message = signUpMessage2(
+        "username",
+        "role",
+        "password",
+        "password"
+      );
+      assert.strictEqual(message, "You have signed up successfully.");
+    });
+
+    it("Should return 'You have updated your working shifts successfully!' for confirmDaysMessage", function () {
+      const message = confirmDaysMessage();
+      assert.strictEqual(
+        message,
+        "You have updated your working shifts successfully!"
+      );
+    });
+
+    it("Should return 'You have cleared the schedule successfully!' for resetDaysMessage", function () {
+      const message = resetDaysMessage();
+      assert.strictEqual(
+        message,
+        "You have cleared the schedule successfully!"
+      );
+    });
+  });
+
 });
