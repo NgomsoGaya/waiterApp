@@ -56,7 +56,7 @@
         button {
             width: 50%;
             padding: 10px;
-            background-color: #007bff;
+            background-color: black;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -164,7 +164,9 @@ h1 {
     /* flex-direction: column; */
     align-items: center;
     text-align: center;
-    min-width: 100%;
+    min-width: 80%;
+    background-color: rgba(222, 184, 135, 0.531);
+    padding-bottom: 10px;
     /* border: 1px solid #ccc; Add a border for visualization */
     /* padding: 10px; Optional padding for the container */
 }
