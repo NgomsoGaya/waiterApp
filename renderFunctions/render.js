@@ -71,8 +71,10 @@ export default function render() {
             colors.push("enoughWaiter");
           } else if (element > 3) {
             colors.push("fewWaiter");
-          } else if (element < 3) {
+          } else if (element < 3 ) {
             colors.push("moreWaiter");
+          } else if (element == 0) {
+            colors.push("")
           }
         }
 
@@ -219,7 +221,9 @@ export default function render() {
            if (user.role === "waiter") {
              // Check if the user's role is 'waiter'
              next(); // Allow access
-           }; // Modify the URL to your login page
+           } else {
+             res.redirect("/"); // Modify the URL to your signup page
+           } // Modify the URL to your login page
         } else {
           // The user does not exist in the users table
           // Redirect them to the signup page
@@ -247,6 +251,8 @@ export default function render() {
           if (user.role === "admin") {
             // Check if the user's role is 'waiter'
             next(); // Allow access
+          } else {
+            res.redirect("/"); // Modify the URL to your signup page
           } // Modify the URL to your login page
         } else {
           // The user does not exist in the users table
