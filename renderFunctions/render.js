@@ -39,7 +39,10 @@ export default function render() {
       }
     }
 
+  let userName = ''
   async function login(req, res, next) {
+
+    userName = req.body.username
     try {
       res.render("login");
     } catch (error) {
@@ -181,9 +184,20 @@ export default function render() {
 
   async function clear(req, res, next) {
     try {
-       const username = req.params.username;
-      queryFunctions.clearWaiters()
-      let clearSuccess = frontEndFunctions.resetDaysMessage()
+      //const username = req.params.username;
+      //console.log(username);
+      
+      //let role = await db.oneOrNone("SELECT role FROM users WHERE name = $1", 'ngomso');
+      //console.log(role)
+
+      //let clearSuccess = ''
+      
+      //if (role = 'admin') {
+        await queryFunctions.clearWaiters()
+       let clearSuccess = frontEndFunctions.resetDaysMessage()
+    //  }
+      
+     
 
       res.render("admin", { clearSuccess });
     } catch (error) {
@@ -196,6 +210,7 @@ export default function render() {
 
     // Check if the username exists in the users table
     db.oneOrNone("SELECT * FROM users WHERE name = $1", username)
+      //check if they are admin or waiter and redirect them accordingly.
       .then((user) => {
         if (user) {
           // The user exists in the users table

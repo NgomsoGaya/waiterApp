@@ -40,7 +40,8 @@
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
-            color: white;
+            font-size: x-large;
+            color: black;
         }
 
         input[type="text"],
@@ -81,7 +82,9 @@
         }
         
         .no-bullets { 
-            color: white;
+            color: black;
+            font-size: x-large;
+            font-weight: bold;
         }
 
         /* Style the table */
@@ -117,7 +120,7 @@ tbody tr:hover {
 tbody td {
     padding: 5px;
     border-bottom: 1px solid #ddd;
-    color: white;
+    color: black;
     font-weight: bold;
     text-align: center;
 }
@@ -128,6 +131,8 @@ h1 {
     margin-bottom: 20px;
     text-align: center;
     color: black;
+    text-shadow: 0 0 2px white;
+    /* background-color: white; */
     /* font-size: larger; */
     /* font-weight: bolder; */
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -147,7 +152,7 @@ h1 {
 }
 
 .moreWaiter {
-    color: orange;
+    background-color: orange;
 }
 
 .center-container {
@@ -195,18 +200,19 @@ h1 {
 }
 .confirmMessage{
     color: green;
-    font-size: larger;
-    font-weight: bold;
+    font-size: xx-large;
+    text-shadow: 0 0 2px black;
+    /* font-weight: bold; */
 }
 .loginFootMsg{
     font-size: large;
     font-weight: bold;
-    color: white;
+    color: black;
 }
 .signUpFootMsg{
     font-size: large;
     font-weight: bold;
-    color: white;
+    color: black;
 }
 
 #loginSuccess{
@@ -245,6 +251,9 @@ h1 {
     font-size: large;
     font-weight: bold;
     color: green;
+}
+#role{
+    font-size: x-large;
 }
 
 @media screen and (max-width: 768px) {
