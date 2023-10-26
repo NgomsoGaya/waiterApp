@@ -68,7 +68,7 @@ app.post("/confirmdays/:username", mainrender.confirmDaysPost);
 
 app.get(
   "/days/:username",
-  mainrender.restrictAccessToUserRoutes,mainrender.admin
+  mainrender.restrictAccessToUserRoutes2,mainrender.admin
 );
 app.post("/admin", mainrender.clear)
 

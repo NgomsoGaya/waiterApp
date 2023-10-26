@@ -216,11 +216,42 @@ export default function render() {
           // The user exists in the users table
           // You can perform additional checks if needed, like checking user role
           // and then redirect to the login page
-          next(); // Modify the URL to your login page
+           if (user.role === "waiter") {
+             // Check if the user's role is 'waiter'
+             next(); // Allow access
+           }; // Modify the URL to your login page
         } else {
           // The user does not exist in the users table
           // Redirect them to the signup page
           res.redirect("/signup"); // Modify the URL to your signup page
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle the error appropriately (e.g., show an error page or log it)
+        res.status(500).send("Internal Server Error");
+      });
+  }
+
+  function restrictAccessToUserRoutes2(req, res, next) {
+    const username = req.params.username;
+
+    // Check if the username exists in the users table
+    db.oneOrNone("SELECT * FROM users WHERE name = $1", username)
+      //check if they are admin or waiter and redirect them accordingly.
+      .then((user) => {
+        if (user) {
+          // The user exists in the users table
+          // You can perform additional checks if needed, like checking user role
+          // and then redirect to the login page
+          if (user.role === "admin") {
+            // Check if the user's role is 'waiter'
+            next(); // Allow access
+          } // Modify the URL to your login page
+        } else {
+          // The user does not exist in the users table
+          // Redirect them to the signup page
+          res.redirect("/login"); // Modify the URL to your signup page
         }
       })
       .catch((error) => {
@@ -242,5 +273,6 @@ export default function render() {
     confirmDaysPost,
     clear,
     restrictAccessToUserRoutes,
+    restrictAccessToUserRoutes2,
   };
 }
