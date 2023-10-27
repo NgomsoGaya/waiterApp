@@ -88,35 +88,37 @@ export default function query(db) {
        }
      }
    }
-
-    async function displayWaiter() {
-        let schedule = {
-          mondayWaiter: await db.any(
-            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 1"
-          ),
-          tuesdayWaiter: await db.any(
-            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 2"
-          ),
-          wednesdayWaiter: await db.any(
-            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 3"
-          ),
-          thursdayWaiter: await db.any(
-            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 4"
-          ),
-          fridayWaiter: await db.any(
-            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 5"
-          ),
-          sartudayWaiter: await db.any(
-            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 6"
-          ),
-          sundayWaiter: await db.any(
-            "SELECT users.name FROM users INNER JOIN usershifts ON users.id = usershifts.user_id WHERE usershifts.shift_id = 7"
-          ),
-        };
-      
-        return schedule
-    }
   
+  function getDayName(day) {
+    const daysOfWeek = [
+      "mondayWaiter",
+      "tuesdayWaiter",
+      "wednesdayWaiter",
+      "thursdayWaiter",
+      "fridayWaiter",
+      "saturdayWaiter",
+      "sundayWaiter",
+    ];
+    return daysOfWeek[day - 1];
+  }
+
+  async function displayWaiter() {
+      const schedule = {};
+      for (let day = 1; day <= 7; day++) {
+        const result = await db.any(
+          `
+      SELECT users.name
+      FROM users
+      INNER JOIN usershifts ON users.id = usershifts.user_id
+      WHERE usershifts.shift_id = $1
+    `,
+          [day]
+        );
+        schedule[getDayName(day)] = result;
+      }
+      return schedule;
+  }
+
   async function clearWaiters() {
     await db.none("DELETE FROM usershifts")
   }
