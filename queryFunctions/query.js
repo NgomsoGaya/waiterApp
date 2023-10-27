@@ -1,15 +1,27 @@
 export default function query(db) {
 
     async function signUp(username, role, password, confirm) {
-  if (username && role && password && confirm) {
-    if (password === confirm) {
-      await db.none(
-        "INSERT INTO users (name, password, role) VALUES ($1, $2, $3)",
-        [username, password, role]
-      );
+      if (username && role && password && confirm) {
+        // Check if the username already exists in the database
+        const existingUser = await db.oneOrNone(
+          "SELECT * FROM users WHERE name = $1",
+          username
+        );
+
+        if (existingUser) {
+          // Username already exists, handle the error or return an appropriate message
+          return "Username already exists";
+        } else if (password === confirm) {
+          // Insert the new user into the database
+          await db.none(
+            "INSERT INTO users (name, password, role) VALUES ($1, $2, $3)",
+            [username, password, role]
+          );
+          return "Sign-up successful";
+        }
+      }
+      return "Sign-up failed"; // Return a general failure message
     }
-  }
-}
 
     async function login(username, password) {
         let role = null

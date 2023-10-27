@@ -15,92 +15,152 @@ describe("Testing my waiter Web App", function () {
   this.timeout(20000);
 
   describe("Testing my back end functions", function () { 
-    beforeEach(async function () {
-    try {
-      // Insert test data into the test database
-      // await db.none(
-      //   "INSERT INTO users (name, password, role) VALUES ($1, $2, $3)",
-      //   ["low", "broke", "waiter"]
-      // );
-      //await db.none("INSERT INTO shifts (day) VALUES ($1)", ["monday"]);
-      // Insert more data as needed for your tests.
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  });
-
-  afterEach(async function () {
-    try {
-      // await db.none(
-      //   "DELETE FROM usershifts WHERE user_id = (SELECT id FROM users WHERE name = $1)",
-      //   ["low"]
-      // );
-      // // Remove the test data from the test database
-      // await db.none("DELETE FROM users WHERE name = $1", ["low"]);
-      //await db.none("DELETE FROM shifts WHERE day = $1", ["monday"]);
-      // Delete more records if needed.
-    } catch (err) {
-      console.log(err);
-      throw err;
-    }
-  });
 
   it("Should allow a signed up waiter to add days", async function () {
     try {
       let queryFunction = query(db);
 
-      // No need to sign up the waiter, as test data is already inserted.
-      await queryFunction.signUp("low", "waiter", "2222", "2222")
-      // Log in the waiter
-      const role = await queryFunction.login("low", "broke");
-      //assert.equal(role, "waiter");
+      await queryFunction.signUp("zig", "waiter", "2222", "2222")
 
-      //await queryFunction.keepButtonsChecked("pants")
-      // Confirm working days
+      // Log in the waiter
+      const role = await queryFunction.login("zig", "2222");
+    
+      //submit the days of your choice
       await queryFunction.confirmDays(
-        ["monday", "tuesday", "wednesday"],
-        "low"
+        ["Monday", "Tuesday", "Wednesday"],
+        "zig"
       );
 
       // Check if working days have been added successfully
-      const selectedDays = await queryFunction.keepButtonsChecked("low");
+      const selectedDays = await queryFunction.keepButtonsChecked("zig");
        const selectedDayNames = selectedDays.map((day) => day.day);
 
-      assert.deepEqual(selectedDayNames, ["monday", "tuesday", "wednesday"]);
+      assert.deepEqual(selectedDayNames, ["Monday", "Tuesday", "Wednesday"]);
     } catch (err) {
       console.log(err);
     }
   });
 
-  // Add more test cases for other functions as needed
+  it("Should allow admin to clear the schedule successfully", async function () {
+    try {
+      let queryFunction = query(db);
 
-  // it("Should clear the schedule successfully", async function () {
-  //   try {
-  //     let queryFunction = query(db);
+      //sign up the waiter.
+      await queryFunction.signUp("coinz", "waiter", "2222", "2222");
 
-  //     // No need to sign up the waiter, as test data is already inserted.
+      // Log in the waiter
+      await queryFunction.login("coinz", "2222");
 
-  //     // Log in the waiter
-  //     const role = await queryFunction.login("coinz", "broke");
-  //     assert.equal(role, "waiter");
+      // Confirm working days
+      await queryFunction.confirmDays(
+        ["Monday", "Tuesday", "Wednesday"],
+        "coinz"
+      );
 
-  //     // Confirm working days
-  //     await queryFunction.confirmDays(
-  //       ["monday", "tuesday", "wednesday"],
-  //       "coinz"
-  //     );
+      //login the admin
+      await queryFunction.login("ngomso", "2023");
 
-  //     // Clear the schedule
-  //     await queryFunction.clearWaiters();
+      // Clear the schedule
+      await queryFunction.clearWaiters();
 
-  //     // Check if the schedule has been cleared successfully
-  //     const selectedDays = await queryFunction.keepButtonsChecked("coinz");
-  //     assert.deepEqual(selectedDays, []);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  //});
+      // Check if the schedule has been cleared successfully
+      const selectedDays = await queryFunction.keepButtonsChecked("coinz");
+
+      assert.deepEqual(selectedDays, []);
+    } catch (err) {
+      console.log(err);
+    }
+  });
+    
+    it("Should allow a signed up waiter to edit work days", async function () {
+      try {
+        let queryFunction = query(db);
+
+        await queryFunction.signUp("dawg", "waiter", "2222", "2222");
+
+        // Log in the waiter
+        const role = await queryFunction.login("dawg", "2222");
+
+        //submit the days of your choice
+        await queryFunction.confirmDays(
+          ["Monday", "Tuesday", "Wednesday"],
+          "dawg"
+        );
+
+        //submit different days
+        await queryFunction.confirmDays(
+          ["Tuesday", "Wednesday", "Thursday"],
+          "dawg"
+        );
+
+        // Check if working days have been added successfully
+        const selectedDays = await queryFunction.keepButtonsChecked("dawg");
+        const selectedDayNames = selectedDays.map((day) => day.day);
+
+        assert.deepEqual(selectedDayNames, ["Tuesday", "Wednesday", "Thursday"]);
+      } catch (err) {
+        console.log(err);
+      }
+    });
+
+    it("Should allow admin to see all the waiters who picked days", async function () {
+      try {
+        let queryFunction = query(db);
+
+        //sign up a the waiter.
+        await queryFunction.signUp("bino", "waiter", "2222", "2222");
+
+        // Log in the waiter
+        await queryFunction.login("bino", "2222");
+
+        // Confirm working days
+        await queryFunction.confirmDays(
+          ["Monday", "Tuesday", "Wednesday"],
+          "bino"
+        );
+
+        //login the admin
+        await queryFunction.login("ngomso", "2023");
+
+        // view the waiters working each day
+        const viewEveryWaiter = await queryFunction.displayWaiter();
+
+        assert.deepEqual(viewEveryWaiter, {
+          fridayWaiter: [],
+          mondayWaiter: [
+            {
+              name: "bino",
+            },
+          ],
+          sartudayWaiter: [],
+          sundayWaiter: [],
+          thursdayWaiter: [
+            {
+              name: "dawg",
+            },
+          ],
+          tuesdayWaiter: [
+            {
+              name: "dawg",
+            },
+            {
+              name: "bino",
+            },
+          ],
+          wednesdayWaiter: [
+            {
+              name: "dawg",
+            },
+            {
+              name: "bino",
+            },
+          ],
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    });
+    
   })
   
   describe("Testing frontEnd functions", function () {
